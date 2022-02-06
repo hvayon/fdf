@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:27:00 by hvayon            #+#    #+#             */
-/*   Updated: 2021/11/15 20:25:51 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/06 20:11:51 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
@@ -29,3 +29,5 @@ char	*ft_new_remainder(char *remainder);
 char	*ft_get_line(char *remainder);
 
 #endif
+
+// -lmlx -framework OpenGL -framework AppKit
