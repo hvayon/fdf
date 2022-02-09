@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:58 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/06 18:06:44 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/09 21:45:11 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,26 @@ int		get_widht(char *file_name)
 	return(widht);
 }
 
-void	fill_matrix(int *z_line, char *line)
+void	fill_matrix(t_matrix *z_line, char *line)
 {
 	char **arg;
+	char **el;
 	int i;
+	int j;
 
 	arg = ft_split(line, ' ');
 	i = 0;
 	while (arg[i])
 	{
-		z_line[i] = ft_atoi(arg[i]);
+		el = ft_split(arg[i], ',');
+		z_line[i].z = ft_atoi(el[0]);
+		z_line[i].color = ft_atoi(el[1]);
+		j = 0;
+		while (el[j] != NULL)
+			free(el[j++]);
 		free(arg[i]);
+		free(el[j]);
+		free(el);
 		i++;
 	}
 	free(arg);
@@ -81,11 +90,11 @@ int	read_file(char *file_name, fdf *data)
 		free(data);
 		return(0);
 	}
-	data->matrix = (int **)malloc(sizeof(int *) * (data->height)); //выделяем память под строки 
+	data->matrix = (t_matrix **)malloc(sizeof(t_matrix *) * (data->height)); //выделяем память под строки 
 	i = 0;
 	while (i <= data->height)
 	{
-		data->matrix[i] = (int *)malloc(sizeof(int) * (data->width)); //выделяем память под каждый эелемент строки
+		data->matrix[i] = (t_matrix *)malloc(sizeof(t_matrix) * (data->width)); //выделяем память под каждый эелемент строки
 		i++;	
 	}	
 	fd = open(file_name, O_RDONLY, 0);

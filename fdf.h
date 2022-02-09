@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/06 20:40:42 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/09 20:58:27 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,24 @@
 
 #include <stdio.h> // delete
 
-typedef struct
+typedef struct s_matrix
+{
+	int color;
+	int z;
+	
+}		t_matrix;
+
+typedef struct s_fdf
 {
 	int height;
 	int width;
-	int **matrix; // двумерный массив
+	t_matrix **matrix;
 	int zoom;
-
 	int color;
+	int x_shift;
+	int y_shift;
+	int flag;
+	float angle;
 
 	void *mlx_ptr;
 	void *win_ptr;
