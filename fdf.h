@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/09 20:58:27 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/10 21:53:05 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		read_file(char *file_name, fdf *data);
 char	*get_next_line(int fd);
 void	drow_line(float x, float y, float x1, float y1, fdf *data);
 void	drow(fdf *data);
+int		convert_color(char *color_name);
 
 
 #endif

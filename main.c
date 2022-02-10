@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:15:54 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/09 20:36:02 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/10 22:48:02 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,20 @@ int main(int argc, char **argv)
 	drow(data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
+	//printf("%d", convert_color("0x802020"));
+	// int i = 0;
+	// int j = 0;
+	// while (i < data->height)
+	// {
+	// 	j = 0;
+	// 	while (j < data->width)
+	// 	{
+	// 			printf("%10d ", data->matrix[i][j].color);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	
-	ft_free_map(data);
-	free(data);
+	// ft_free_map(data);
+	// free(data);
 }
-
-
-
-// void	ft_free_map(fdf *data)
-// {
-// 	int i;
-// 	int j;
-// 	i = 0;
-// 	while (i <= data->height)
-// 	{
-// 		j = 0;
-// 		while (j < data->width)
-// 		{
-// 			free(data->matrix[i][j]);
-// 			j++;
-// 		}
-// 		//free(data->matrix[i]);
-// 		i++;
-// 	}
-// }

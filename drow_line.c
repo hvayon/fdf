@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 19:11:40 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/09 21:50:19 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/10 22:49:04 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,33 @@ void	isometric(float *x, float *y, int z, fdf *data)
     *y = (*x + *y) * sin(data->angle) - z;
 }
 
+int		convert_color(char *color_name)
+{
+	int num;
+	int i;
+	int j;
+	int len;
+	char *arg;
+	
+	num = 0;
+	len = ft_strlen(color_name) - 3;
+	arg = "0123456789abcdef";
+	i = 2;
+	while (color_name[i] != '\0')
+	{
+		j = 0;
+		while (arg[j] != '\0')
+		{
+			if (color_name[i] == arg[j] || color_name[i] == arg[j + 32])
+				break;
+			j++;	
+		}
+		num +=  j * pow(16, len);
+		len--; 
+		i++;
+	}
+	return (num);
+}
 void	drow_line(float x, float y, float x1, float y1, fdf *data)
 {
 	float	x_step;
@@ -29,18 +56,21 @@ void	drow_line(float x, float y, float x1, float y1, fdf *data)
 
 	z = data->matrix[(int)y][(int)x].z;
 	z1 = data->matrix[(int)y1][(int)x1].z;
-	
+	data->color = data->matrix[(int)y][(int)x].color;
+	//printf("%d\n", data->color);
 	x *= data->zoom;
 	y *= data->zoom;
 	x1 *= data->zoom;
 	y1 *= data->zoom;
-	z *= data->zoom/5;
-	z1 *= data->zoom/5;
-
-	if ((z > 0) || (z1 > 0))
-		data->color = 0xe80c0c;
-	else
-		data->color = 0xffffff;
+	z *= data->zoom/2;
+	z1 *= data->zoom/2;
+	// printf("%d\n", data->matrix[(int)y][(int)x].z);
+//	data->color = data->matrix[(int)y][(int)x].color;
+//	data->color = convert_color(&data->color[2]);
+	// if ((z > 0) || (z1 > 0))
+	// 	data->color = 0xe80c0c;
+	// else
+	// 	data->color = 0xffffff;
 
 if (data->flag != 1)
 {
@@ -64,6 +94,7 @@ if (data->flag != 1)
 	
 	while((int)(x - x1) || (int)(y - y1))
 	{
+		//printf("%d", data->color);
 		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color);
 		x += x_step;
 		y += y_step;

@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:58 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/09 21:45:11 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/10 22:36:59 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,33 @@ int		get_widht(char *file_name)
 	return(widht);
 }
 
+// int	ft_get_int(char *a)
+// {
+// 	char	*base;
+// 	int		i;
+// 	int		j;
+// 	int		res;
+
+// 	res = 0;
+// 	base = "0123456789ABCDEFabcdef";
+// 	i = 2;
+// 	while (a[i] != '\0')
+// 	{
+// 		j = 0;
+// 		while (base[j] != '\0')
+// 		{
+// 			if (a[i] == base[j])
+// 				break ;
+// 			j++;
+// 		}
+// 		if (j > 15)
+// 			j -= 6;
+// 		res = res + (j * pow(16, ft_strlen(&a[i]) - 1));
+// 		i++;
+// 	}
+// 	return (res);
+// }
+
 void	fill_matrix(t_matrix *z_line, char *line)
 {
 	char **arg;
@@ -64,7 +91,10 @@ void	fill_matrix(t_matrix *z_line, char *line)
 	{
 		el = ft_split(arg[i], ',');
 		z_line[i].z = ft_atoi(el[0]);
-		z_line[i].color = ft_atoi(el[1]);
+		if (el[1] != NULL)
+			z_line[i].color = convert_color(el[1]);
+		else
+			z_line[i].color = 0xffffff;
 		j = 0;
 		while (el[j] != NULL)
 			free(el[j++]);
@@ -92,7 +122,7 @@ int	read_file(char *file_name, fdf *data)
 	}
 	data->matrix = (t_matrix **)malloc(sizeof(t_matrix *) * (data->height)); //выделяем память под строки 
 	i = 0;
-	while (i <= data->height)
+	while (i < data->height)
 	{
 		data->matrix[i] = (t_matrix *)malloc(sizeof(t_matrix) * (data->width)); //выделяем память под каждый эелемент строки
 		i++;	
