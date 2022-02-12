@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:15:54 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/10 22:48:02 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/12 21:39:32 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int main(int argc, char **argv)
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
+	data->img = mlx_new_image(data->mlx_ptr, 1000, 1000);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
+								&data->endian);
 	data->zoom = 20;
 	data->angle = 0.8;
 	
@@ -75,20 +78,5 @@ int main(int argc, char **argv)
 	drow(data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
-	//printf("%d", convert_color("0x802020"));
-	// int i = 0;
-	// int j = 0;
-	// while (i < data->height)
-	// {
-	// 	j = 0;
-	// 	while (j < data->width)
-	// 	{
-	// 			printf("%10d ", data->matrix[i][j].color);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	
-	// ft_free_map(data);
-	// free(data);
+	exit(0);
 }

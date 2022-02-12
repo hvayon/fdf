@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wurrigon <wurrigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/10 21:53:05 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/12 20:52:43 by wurrigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 #include <mlx.h>
+// # include "mlx.h"
 #include "libft/libft.h"
 
 #include <unistd.h>
@@ -44,6 +45,11 @@ typedef struct s_fdf
 
 	void *mlx_ptr;
 	void *win_ptr;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }			fdf;
 
 int		read_file(char *file_name, fdf *data);

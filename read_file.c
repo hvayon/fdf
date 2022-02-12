@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:58 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/10 22:36:59 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/12 21:15:39 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,6 @@ int		get_widht(char *file_name)
 	close(fd);
 	return(widht);
 }
-
-// int	ft_get_int(char *a)
-// {
-// 	char	*base;
-// 	int		i;
-// 	int		j;
-// 	int		res;
-
-// 	res = 0;
-// 	base = "0123456789ABCDEFabcdef";
-// 	i = 2;
-// 	while (a[i] != '\0')
-// 	{
-// 		j = 0;
-// 		while (base[j] != '\0')
-// 		{
-// 			if (a[i] == base[j])
-// 				break ;
-// 			j++;
-// 		}
-// 		if (j > 15)
-// 			j -= 6;
-// 		res = res + (j * pow(16, ft_strlen(&a[i]) - 1));
-// 		i++;
-// 	}
-// 	return (res);
-// }
 
 void	fill_matrix(t_matrix *z_line, char *line)
 {
