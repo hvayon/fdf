@@ -3,60 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wurrigon <wurrigon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/12 20:52:43 by wurrigon         ###   ########.fr       */
+/*   Updated: 2022/02/13 20:39:32 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include <mlx.h>
+# include <mlx.h>
 // # include "mlx.h"
-#include "libft/libft.h"
+# include "libft/libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <math.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <math.h>
 
-#include <stdio.h> // delete
+# include <stdio.h> // delete
 
 typedef struct s_matrix
 {
-	int color;
-	int z;
-	
+	int	color;
+	int	z;
 }		t_matrix;
 
 typedef struct s_fdf
 {
-	int height;
-	int width;
-	t_matrix **matrix;
-	int zoom;
-	int color;
-	int x_shift;
-	int y_shift;
-	int flag;
-	float angle;
+	int			height;
+	int			width;
+	t_matrix	**matrix;
+	int			zoom;
+	int			color;
+	int			flag_color;
+	int			x_shift;
+	int			y_shift;
+	int			flag;
+	float		angle;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_fdf;
 
-	void *mlx_ptr;
-	void *win_ptr;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			fdf;
-
-int		read_file(char *file_name, fdf *data);
+void	read_file(char *file_name, t_fdf *data);
 char	*get_next_line(int fd);
-void	drow_line(float x, float y, float x1, float y1, fdf *data);
-void	drow(fdf *data);
+void	drow_line(float *arg, t_fdf *data);
+void	drow(t_fdf *data);
 int		convert_color(char *color_name);
-
+void	swap_color(t_fdf *data);
+int		deal_key(int key, t_fdf *data);
+void	key_color(int key, t_fdf *data);
+void	key_rotation(int key, t_fdf *data);
+void	key_projection(int key, t_fdf *data);
+void	key_zoom(int key, t_fdf *data);
+void	key_translate(int key, t_fdf *data);
 
 #endif
