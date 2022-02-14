@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 18:15:54 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/14 22:00:08 by hvayon           ###   ########.fr       */
+/*   Created: 2022/02/14 21:14:27 by hvayon            #+#    #+#             */
+/*   Updated: 2022/02/14 22:06:07 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	ft_free_map(t_fdf *data)
 {
@@ -23,6 +23,23 @@ void	ft_free_map(t_fdf *data)
 		i++;
 	}
 	free(data->matrix);
+}
+
+int	deal_key(int key, t_fdf *data)
+{
+	if (key == 53)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		exit(0);
+	}
+	key_translate(key, data);
+	key_zoom(key, data);
+	key_projection(key, data);
+	key_rotation(key, data);
+	key_color(key, data);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	drow(data);
+	return (0);
 }
 
 void	first_init(t_fdf *data)

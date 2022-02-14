@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/14 21:59:18 by hvayon           ###   ########.fr       */
+/*   Created: 2022/02/14 21:19:43 by hvayon            #+#    #+#             */
+/*   Updated: 2022/02/14 22:04:17 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include <mlx.h>
 # include "libft/libft.h"
@@ -20,8 +20,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-
-# include <stdio.h> // delete
 
 typedef struct s_matrix
 {
@@ -57,6 +55,11 @@ void	drow(t_fdf *data);
 int		convert_color(char *color_name);
 void	swap_color(t_fdf *data);
 int		deal_key(int key, t_fdf *data);
+void	key_color(int key, t_fdf *data);
+void	key_rotation(int key, t_fdf *data);
+void	key_projection(int key, t_fdf *data);
+void	key_zoom(int key, t_fdf *data);
+void	key_translate(int key, t_fdf *data);
 int		ft_max(float a, float b);
 void	get_zoom(float *arg, t_fdf *data, int *z, int *z1);
 void	choose_color(float *arg, t_fdf *data);
