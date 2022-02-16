@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 21:14:27 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/14 22:06:07 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/16 19:30:30 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exit(0);
 	data = (t_fdf *)malloc(sizeof(t_fdf));
+	if (!data)
+		return (0);
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");

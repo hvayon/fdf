@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:15 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/14 21:59:18 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/16 19:37:32 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-
-# include <stdio.h> // delete
 
 typedef struct s_matrix
 {

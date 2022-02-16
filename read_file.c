@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:58 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/14 21:57:52 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/16 19:32:42 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 int	get_height(char *file_name)
 {
-	int	fd;
-	int	height;
+	int		fd;
+	int		height;
+	char	*line;
 
 	fd = open(file_name, O_RDONLY, 0);
 	if (fd < 0)
 		return (0);
 	height = 0;
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
 		height++;
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (height);
 }
@@ -42,11 +48,14 @@ int	get_widht(char *file_name)
 	line = get_next_line(fd);
 	arg = ft_split(line, ' ');
 	i = 0;
-	while (arg[i] != '\0')
+	while (arg[i])
 	{
+		free(arg[i]);
 		i++;
 		widht++;
 	}
+	free(arg[i]);
+	free(arg);
 	free(line);
 	close(fd);
 	return (widht);
@@ -77,6 +86,7 @@ void	fill_matrix(t_matrix *z_line, char *line)
 		free(el);
 		i++;
 	}
+	free(arg[i]);
 	free(arg);
 }
 
@@ -123,4 +133,3 @@ void	read_file(char *file_name, t_fdf *data)
 	close(fd);
 	data->matrix[i] = NULL;
 }
-// -lmlx -framework OpenGL -framework AppKit

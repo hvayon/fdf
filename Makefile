@@ -19,10 +19,6 @@ OBJ = $(SRC:.c=.o)
 
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
-CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
-
-
 all: $(NAME)
 
 lib: 
@@ -32,7 +28,7 @@ $(NAME) : lib $(OBJ) $(LIB)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c $(HEADER) 
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 bonus: lib $(OBJ_BONUS) $(HEADER_BONUS)
 	$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
