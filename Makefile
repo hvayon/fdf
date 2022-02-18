@@ -16,25 +16,30 @@ DIR_LIB = libft
 LIB = $(DIR_LIB)/libft.a
 
 OBJ = $(SRC:.c=.o)
+D_FILES = $(patsubst %c,%d, $(SRC) $(SRC_BONUS))
 
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
-all: $(NAME)
+all: lib $(NAME)
 
-lib: 
+lib:
 	@make -C libft
 
-$(NAME) : lib $(OBJ) $(LIB) 
-	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
+$(NAME) : $(OBJ)
+	$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c $(HEADER) 
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -MD
 
-bonus: lib $(OBJ_BONUS) $(HEADER_BONUS)
-	$(CC) $(FLAGS) $(OBJ_BONUS) $(LIB) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
+include $(wildcard $(D_FILES))
+
+bonus:
+	@SRC="$(SRC_BONUS)"
+	@HEADER="$(HEADER_BONUS)"
+	@make all
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS)
+	rm -f $(OBJ) $(OBJ_BONUS) $(D_FILES)
 	make -C $(DIR_LIB) clean
 
 fclean: clean

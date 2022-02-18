@@ -6,7 +6,7 @@
 #    By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 23:13:38 by hvayon            #+#    #+#              #
-#    Updated: 2022/02/16 19:34:06 by hvayon           ###   ########.fr        #
+#    Updated: 2022/02/18 21:44:21 by hvayon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,26 +27,28 @@ NAMES			= ft_memset.c ft_bzero.c ft_memcpy.c\
 					
 
 OBJS			= $(NAMES:.c=.o)
+D_FILES = $(patsubst %c,%d, $(NAMES))
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
 NAME			= libft.a
 
-
-%.o: %.c ${HEADER}
-	$(CC) $(CFLAGS) -c $< -o $@
-
 all:  $(NAME)
 
-$(NAME): $(OBJS) ${HEADER} Makefile
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $?
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -MD
+
+include $(wildcard $(D_FILES))
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS) $(D_FILES)
 
 fclean: clean
 	rm -f $(NAME)
 
 re:	fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
