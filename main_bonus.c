@@ -6,11 +6,16 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 21:14:27 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/16 19:30:30 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/19 16:29:05 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
+
+int	ft_cross_button(void)
+{
+	exit (0);
+}
 
 void	ft_free_map(t_fdf *data)
 {
@@ -68,6 +73,7 @@ int	main(int argc, char **argv)
 									&data->line_length, &data->endian);
 	first_init(data);
 	drow(data);
+	mlx_hook(data->win_ptr, 17, 0, ft_cross_button, data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
 	exit(0);

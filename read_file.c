@@ -6,7 +6,7 @@
 /*   By: hvayon <hvayon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:09:58 by hvayon            #+#    #+#             */
-/*   Updated: 2022/02/16 19:32:42 by hvayon           ###   ########.fr       */
+/*   Updated: 2022/02/19 17:38:45 by hvayon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,4 @@ void	read_file(char *file_name, t_fdf *data)
 		i++;
 	}
 	close(fd);
-	data->matrix[i] = NULL;
 }
